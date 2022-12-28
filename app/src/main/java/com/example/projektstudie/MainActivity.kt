@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun fetchData() {
-        val url = URL("http://${}:3000/getrestaurants?latitude=123&longitude=123&searchTerm=Currywurst")
+        val url = URL("http://${BuildConfig.LOCAL_TEST_DOMAIN}:3000/getrestaurants?latitude=123&longitude=123&searchTerm=Currywurst")
 
         with(url.openConnection() as HttpURLConnection) {
             requestMethod = "GET"  // optional default is GET

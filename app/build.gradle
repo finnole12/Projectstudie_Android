@@ -8,6 +8,7 @@ def propertiesFile = project.rootProject.file('local.properties')
 if (propertiesFile.exists()) {
     properties.load(propertiesFile.newDataInputStream())
 }
+ext.localTestDomain = properties.getProperty('localTestDomain')
 android {
     namespace 'com.example.projektstudie'
     compileSdk 32
@@ -27,6 +28,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "LOCAL_TEST_DOMAIN", "\"$localTestDomain\"")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
