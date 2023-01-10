@@ -7,6 +7,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -28,16 +29,22 @@ class MainActivity : AppCompatActivity(),LocationListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getLocation()
-        binding.dummyText.text = "Hallo Welt"
-        binding.buttonConfirm.setOnClickListener {
-            CoroutineScope(IO).launch{
-                fetchData()
+        binding.inputSearchterm.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                CoroutineScope(IO).launch{
+                    fetchData(query)
+                }
+                return false
             }
-        }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                return false
+            }
+        })
     }
 
-    fun fetchData() {
-        val searchTerm = binding.inputSearchterm.text
+    fun fetchData(searchTerm: String) {
         val url = URL("http://${BuildConfig.LOCAL_TEST_DOMAIN}:3000/getrestaurants?latitude=123&longitude=123&searchTerm=${searchTerm}")
 
         with(url.openConnection() as HttpURLConnection) {
@@ -64,6 +71,5 @@ class MainActivity : AppCompatActivity(),LocationListener {
     override fun onLocationChanged(location: Location) {
         longitude = location.longitude
         latidude = location.latitude
-        binding.buttonConfirm.isEnabled = true
     }
 }
