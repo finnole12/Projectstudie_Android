@@ -10,8 +10,10 @@ import android.os.Bundle
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.example.projektstudie.databinding.ActivityMainBinding
+import com.google.android.material.sidesheet.SideSheetDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -24,15 +26,23 @@ class MainActivity : AppCompatActivity(),LocationListener {
     private var latidude: Double? = null
     private lateinit var locationManager: LocationManager
     private var locationPermissionCode = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         getLocation()
-        binding.inputSearchterm.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
+        val sideSheetDialog = SideSheetDialog(this)
+        sideSheetDialog.setContentView(R.layout.fiter_side_sheet)
+
+        binding.btnFilter.setOnClickListener {
+            sideSheetDialog.show()
+        }
+
+        binding.inputSearchTerm.setOnQueryTextListener(object :  SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                CoroutineScope(IO).launch{
+                CoroutineScope(IO).launch {
                     fetchData(query)
                 }
                 return false
