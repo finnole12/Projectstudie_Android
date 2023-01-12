@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Projektstudie</string>
     <string name="burger">Burger</string>
+    <string name="radius">Radius</string>
+    <string name="radiusValueLabelText">%1$s km</string>
+    <string name="set_filters">Set Filters</string>
+    <string name="distance">Distance</string>
+    <string name="rating">Rating</string>
+    <string name="price">Price</string>
+    <string name="popularity">Popularity</string>
+    <string name="sort_by">Sort By</string>
+    <string name="apply">Apply</string>
+    <string name="reset">Reset</string>
 </resources>
