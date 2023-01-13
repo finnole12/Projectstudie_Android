@@ -15,14 +15,19 @@ import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.projektstudie.databinding.ActivityMainBinding
 import com.example.projektstudie.databinding.FiterSideSheetBinding
 import com.google.android.material.sidesheet.SideSheetDialog
 import com.google.android.material.slider.Slider
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -93,15 +98,26 @@ class MainActivity : AppCompatActivity(),LocationListener {
     }
 
     private fun launchSearch() {
-        CoroutineScope(IO).launch {
-            val responseArray = fetchData(
-                searchTerm = binding.inputSearchTerm.query.toString(),
-                // TODO: //radius = currentFilter.radius,
-                sortMethod = currentFilter.sortMethod,
-                // TODO: limit
-                // TODO: offset
-            )
+        var responseArray: ResponseArray
+        CoroutineScope(Main).launch {
+            withContext(IO) {
+                responseArray = fetchData(
+                    searchTerm = binding.inputSearchTerm.query.toString(),
+                    // TODO: //radius = currentFilter.radius,
+                    sortMethod = currentFilter.sortMethod,
+                    // TODO: limit
+                    // TODO: offset
+                )
+            }
             println(responseArray)
+            displayItems(responseArray)
+        }
+    }
+
+    private fun displayItems(responseArray: ResponseArray) {
+        binding.rvwSearchItems.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ItemAdapter(context, responseArray)
         }
     }
 
