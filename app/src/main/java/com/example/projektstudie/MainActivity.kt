@@ -7,6 +7,8 @@ import android.content.pm.ResolveInfo
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
+import android.net.UrlQuerySanitizer
 import android.os.Bundle
 import android.util.JsonReader
 import android.widget.SearchView
@@ -59,8 +61,16 @@ class MainActivity : AppCompatActivity(),LocationListener {
         })
     }
 
-    private fun fetchData(searchTerm: String, radius: Int = 300000000): ResponseArray {
-        val url = URL("http://${BuildConfig.LOCAL_TEST_DOMAIN}:3000/getrestaurants?latitude=123&longitude=123&searchTerm=${searchTerm}&radius=${radius}")
+    private fun fetchData(
+        searchTerm: String = "Burger",
+        radius: Double = 300000.0,
+        sortMethod: SortMethods,
+        longitude: Double = 123.0,
+        latitude: Double = 321.0,
+        limit: Int = 20,
+        offset: Int = 0,
+    ): ResponseArray {
+        val url = URL("http://${BuildConfig.LOCAL_TEST_DOMAIN}:3000/getrestaurants?latitude=${latitude}&longitude=${longitude}&searchTerm=${searchTerm}&radius=${radius}&sortBy=${sortMethod}&limit=${limit}&offset=${offset}")
 
         val responseJson = with(url.openConnection() as HttpURLConnection) {
             requestMethod = "GET"
@@ -85,11 +95,11 @@ class MainActivity : AppCompatActivity(),LocationListener {
     private fun launchSearch() {
         CoroutineScope(IO).launch {
             val responseArray = fetchData(
-                binding.inputSearchTerm.query.toString(),
-                //currentFilter.radius,
-                //currentFilter.sortMethod,
-                //longitude,
-                //latidude
+                searchTerm = binding.inputSearchTerm.query.toString(),
+                // TODO: //radius = currentFilter.radius,
+                sortMethod = currentFilter.sortMethod,
+                // TODO: limit
+                // TODO: offset
             )
             println(responseArray)
         }
