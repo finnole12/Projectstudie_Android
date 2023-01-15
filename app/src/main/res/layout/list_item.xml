@@ -25,4 +25,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txvItemName" />
 
+    <TextView
+        android:id="@+id/txvPriceRange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="€€€"
+        app:layout_constraintStart_toEndOf="@id/txvDistance"
+        app:layout_constraintTop_toBottomOf="@id/txvItemName" />
+
+    <TextView
+        android:id="@+id/txvRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginEnd="0dp"
+        android:fontFamily="@font/babel_stone_han"
+        android:text="@string/star"
+        android:textColor="#CAB603"
+        app:layout_constraintStart_toEndOf="@id/txvPriceRange"
+        app:layout_constraintTop_toBottomOf="@id/txvItemName" />
+
+    <TextView
+        android:id="@+id/txvRatingCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginStart="1dp"
+        android:text="#35"
+        app:layout_constraintStart_toEndOf="@id/txvRating"
+        app:layout_constraintTop_toBottomOf="@id/txvItemName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

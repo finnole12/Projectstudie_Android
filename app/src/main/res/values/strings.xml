@@ -2,7 +2,8 @@
     <string name="app_name">Projektstudie</string>
     <string name="burger">Burger</string>
     <string name="radius">Radius</string>
-    <string name="radiusValueLabelText">%1$s km</string>
+    <string name="kmString">%1$s km</string>
+    <string name="mString">%1$s m</string>
     <string name="set_filters">Set Filters</string>
     <string name="distance">Distance</string>
     <string name="rating">Rating</string>
@@ -12,4 +13,6 @@
     <string name="apply">Apply</string>
     <string name="reset">Reset</string>
     <string name="filter">Filter</string>
+    <string name="star">\u2605</string>
+    <string name="halfStar">\u2BEA</string>
 </resources>

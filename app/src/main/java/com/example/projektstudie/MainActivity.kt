@@ -7,23 +7,18 @@ import android.content.pm.ResolveInfo
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.net.Uri
-import android.net.UrlQuerySanitizer
 import android.os.Bundle
-import android.util.JsonReader
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.projektstudie.databinding.ActivityMainBinding
 import com.example.projektstudie.databinding.FiterSideSheetBinding
 import com.google.android.material.sidesheet.SideSheetDialog
 import com.google.android.material.slider.Slider
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -127,12 +122,12 @@ class MainActivity : AppCompatActivity(),LocationListener {
         sideSheetDialog.setContentView(sideSheetBinding.root)
 
         sideSheetBinding.txvRadiusValue.text = getString(
-            R.string.radiusValueLabelText,
+            R.string.kmString,
             sideSheetBinding.sliRadius.value.toString()
         )
 
         sideSheetBinding.sliRadius.addOnChangeListener(Slider.OnChangeListener { _, value, _ ->
-            sideSheetBinding.txvRadiusValue.text = getString(R.string.radiusValueLabelText, value.toString())
+            sideSheetBinding.txvRadiusValue.text = getString(R.string.kmString, value.toString())
         })
 
         sideSheetBinding.rbtnDistance.isChecked = true
