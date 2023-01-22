@@ -17,6 +17,16 @@
         app:layout_constraintEnd_toStartOf="@id/btnFilter"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txvLocationStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="finding location..."
+        app:layout_constraintTop_toBottomOf="@id/inputSearchTerm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <Button
         android:id="@+id/btnFilter"
         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -35,7 +45,7 @@
         android:layout_margin="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputSearchTerm" />
+        app:layout_constraintTop_toBottomOf="@id/txvLocationStatus" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

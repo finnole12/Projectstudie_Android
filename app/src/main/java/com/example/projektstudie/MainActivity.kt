@@ -3,7 +3,7 @@ package com.example.projektstudie
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.content.pm.ResolveInfo
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(),LocationListener {
     private lateinit var sideSheetBinding: FiterSideSheetBinding
     private lateinit var sideSheetDialog: SideSheetDialog
     private var longitude: Double? = null
-    private var latidude: Double? = null
+    private var latitude: Double? = null
     private lateinit var locationManager: LocationManager
     private var locationPermissionCode = 2
     private var currentFilter = Filter()
@@ -89,7 +89,12 @@ class MainActivity : AppCompatActivity(),LocationListener {
 
     override fun onLocationChanged(location: Location) {
         longitude = location.longitude
-        latidude = location.latitude
+        latitude = location.latitude
+
+        binding.txvLocationStatus.text = Geocoder(this)
+            .getFromLocation(latitude!!, longitude!!, 1)[0].getAddressLine(0)
+
+        launchSearch()
     }
 
     private fun launchSearch() {
@@ -100,6 +105,8 @@ class MainActivity : AppCompatActivity(),LocationListener {
                     searchTerm = binding.inputSearchTerm.query.toString(),
                     // TODO: //radius = currentFilter.radius,
                     sortMethod = currentFilter.sortMethod,
+                    latitude = this@MainActivity.latitude!!,
+                    longitude = this@MainActivity.longitude!!
                     // TODO: limit
                     // TODO: offset
                 )
@@ -147,7 +154,7 @@ class MainActivity : AppCompatActivity(),LocationListener {
             binding.btnFilter.setBackgroundColor(
                 getColor(androidx.appcompat.R.color.material_blue_grey_950)
             )
-            launchSearch()
+            if (latitude != null && longitude != null) launchSearch()
         }
 
         sideSheetBinding.btnResetFilter.setOnClickListener {

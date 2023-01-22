@@ -39,7 +39,7 @@
         />
 
     <TextView
-        android:id="@+id/textPhone"
+        android:id="@+id/txvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
@@ -49,7 +49,32 @@
         app:layout_constraintTop_toBottomOf="@+id/textLocation"
         />
 
+    <Button
+        android:id="@+id/btnExpandMenu"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="expand Menu"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        app:icon="@drawable/ic_round_keyboard_arrow_down_24"
+        app:iconGravity="end"
+        app:layout_constraintTop_toBottomOf="@id/txvPhone"
+        tools:layout_editor_absoluteX="7dp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvwFoodMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnExpandMenu"
+        app:layout_constraintVertical_bias="0.0">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 

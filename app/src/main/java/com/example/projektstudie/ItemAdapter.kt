@@ -1,6 +1,7 @@
 package com.example.projektstudie
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +15,16 @@ class ItemAdapter (
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        fun bindData(name: String, distance: String, priceRangeStr: String, ratingsStr: String, ratingsCount: String) {
+        fun bindData(name: String, distance: String, priceRangeStr: String, ratingsStr: String, ratingsCount: String, context: Context, item: ResponseObject) {
             (itemView.findViewById(R.id.txvItemName) as TextView).text = name
             (itemView.findViewById(R.id.txvDistance) as TextView).text = distance
             (itemView.findViewById(R.id.txvPriceRange) as TextView).text = priceRangeStr
             (itemView.findViewById(R.id.txvRating) as TextView).text = ratingsStr
             (itemView.findViewById(R.id.txvRatingCount) as TextView).text = ratingsCount
             itemView.setOnClickListener {
-                //open new activity
+                context.startActivity(Intent(context, RestaurantActivity::class.java).apply {
+                    putExtra("restaurant", item)
+                })
             }
         }
     }
@@ -38,7 +41,9 @@ class ItemAdapter (
             distance = formatDistance(item.distance),
             priceRangeStr = "€".repeat(item.price_range),
             ratingsStr = formatRating(item.avg_rating),
-            ratingsCount = "#${item.ratings.size}"
+            ratingsCount = "#${item.ratings.size}",
+            context,
+            item
         )
     }
 
