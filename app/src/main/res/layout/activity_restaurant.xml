@@ -49,6 +49,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textLocation"
         />
 
+    <ImageView
+        android:id="@+id/ivwExpCollIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        app:srcCompat="@drawable/ic_round_keyboard_arrow_down_24"
+        app:layout_constraintTop_toTopOf="@id/btnExpandMenu"
+        app:layout_constraintBottom_toBottomOf="@id/btnExpandMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <Button
         android:id="@+id/btnExpandMenu"
         style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -58,7 +69,6 @@
         android:text="expand Menu"
         android:textAlignment="viewStart"
         android:textColor="#000000"
-        app:icon="@drawable/ic_round_keyboard_arrow_down_24"
         app:iconGravity="end"
         app:layout_constraintTop_toBottomOf="@id/txvPhone"
         tools:layout_editor_absoluteX="7dp" />
@@ -68,10 +78,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
+        android:background="#DED2E8"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnExpandMenu"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/txvRatings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:text="Ratings:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvwFoodMenu" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvwRatings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:background="#FAF2C5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnExpandMenu"
+        app:layout_constraintTop_toBottomOf="@id/txvRatings"
         app:layout_constraintVertical_bias="0.0">
 
     </androidx.recyclerview.widget.RecyclerView>

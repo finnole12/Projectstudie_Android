@@ -1,8 +1,12 @@
 package com.example.projektstudie
 
 import android.location.Geocoder
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projektstudie.databinding.ActivityRestaurantBinding
 
 class RestaurantActivity : AppCompatActivity() {
@@ -27,5 +31,29 @@ class RestaurantActivity : AppCompatActivity() {
 
         binding.textLocation.text = geocoder.getFromLocation(restaurant.latitude, restaurant.longitude, 1)[0].getAddressLine(0)
         binding.txvPhone.text = restaurant.phoneNumber
+
+        binding.rvwFoodMenu.apply {
+            layoutManager = LinearLayoutManager(this@RestaurantActivity)
+            adapter = FoodMenuAdapter(this@RestaurantActivity, restaurant.menu)
+        }
+
+        binding.btnExpandMenu.setOnClickListener {
+            when (binding.rvwFoodMenu.visibility) {
+                View.GONE -> {
+                    binding.rvwFoodMenu.visibility = View.VISIBLE
+                    binding.ivwExpCollIcon.setImageResource(R.drawable.ic_round_keyboard_arrow_up_24)
+                }
+                else -> {
+                    binding.rvwFoodMenu.visibility = View.GONE
+                    binding.ivwExpCollIcon.setImageResource(R.drawable.ic_round_keyboard_arrow_down_24)
+                }
+            }
+        }
+
+        binding.rvwRatings.apply {
+            layoutManager = LinearLayoutManager(this@RestaurantActivity)
+            adapter = RatingsAdapter(this@RestaurantActivity, restaurant.ratings)
+            addItemDecoration(DividerItemDecoration(this@RestaurantActivity, LinearLayoutManager.VERTICAL))
+        }
     }
 }

@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity(),LocationListener {
             withContext(IO) {
                 responseArray = fetchData(
                     searchTerm = binding.inputSearchTerm.query.toString(),
-                    // TODO: //radius = currentFilter.radius,
+                    radius = currentFilter.radius.toDouble(),
                     sortMethod = currentFilter.sortMethod,
                     latitude = this@MainActivity.latitude!!,
                     longitude = this@MainActivity.longitude!!
