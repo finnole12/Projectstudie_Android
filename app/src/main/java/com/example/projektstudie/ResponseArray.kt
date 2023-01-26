@@ -11,13 +11,14 @@ data class ResponseObject (
     @SerializedName("latitude") val latitude: Double,
     @SerializedName("longitude") val longitude: Double,
     @SerializedName("phonenumber") val phoneNumber: String,
-    @SerializedName("picture") val picture: Any,
+    @SerializedName("picture") val picture: String,
     @SerializedName("price_range") val price_range: Int,
     @SerializedName("menu") val menu: ArrayList<MenuEntry>,
     @SerializedName("ratings") val ratings: ArrayList<Rating>,
     @SerializedName("distance") val distance: Double,
     @SerializedName("highlight") val highlight: Boolean,
     @SerializedName("avg_rating") val avg_rating: Float,
+    @SerializedName("logo") val logo: String
 ): Serializable
 
 data class MenuEntry (

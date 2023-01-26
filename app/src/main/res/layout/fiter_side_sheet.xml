@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background">
 
     <RelativeLayout
         android:id="@+id/standard_side_sheet"
@@ -22,10 +23,10 @@
             android:layout_marginTop="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:text="@string/set_filters"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-            android:textColor="#000000"
             android:textSize="48sp" />
 
         <com.google.android.material.divider.MaterialDivider
@@ -35,6 +36,7 @@
             android:layout_below="@id/txvSliderHeader"/>
 
         <TextView
+            android:textColor="@color/white"
             android:id="@+id/txvRadius"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_below="@id/txvSliderHeader"
             android:text="@string/radius"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <com.google.android.material.slider.Slider
@@ -67,9 +70,11 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:stepSize="0.5"
+            android:textColor="@color/white"
             android:value="1"
             android:valueFrom="0.5"
-            android:valueTo="10"/>
+            android:valueTo="10"
+            app:thumbColor="@color/teal_200" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider2"
@@ -86,6 +91,7 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_below="@id/divider2"
             android:text="@string/sort_by"
+            android:textColor="@color/white"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <RadioGroup
@@ -102,25 +108,35 @@
                 android:id="@+id/rbtnDistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/distance" />
+                android:buttonTint="@color/white"
+                android:drawableTint="@color/teal_200"
+                android:text="@string/distance"
+                android:textColor="@color/white"
+                app:useMaterialThemeColors="false" />
 
             <RadioButton
                 android:id="@+id/rbtnRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rating" />
+                android:text="@string/rating"
+                android:buttonTint="@color/white"
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/rbtnPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/price" />
+                android:buttonTint="@color/white"
+                android:text="@string/price"
+                android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/rbtnPopularity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/popularity" />
+                android:buttonTint="@color/white"
+                android:text="@string/popularity"
+                android:textColor="@color/white" />
         </RadioGroup>
 
         <Button
@@ -131,6 +147,8 @@
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/default_margin"
             android:text="@string/apply"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/teal_200"
             android:layout_toEndOf="@id/btnResetFilter" />
 
         <Button
@@ -141,6 +159,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="@dimen/default_margin"
+            android:textColor="@color/teal_200"
             android:text="@string/reset" />
 
     </RelativeLayout>

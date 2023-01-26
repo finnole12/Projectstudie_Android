@@ -5,8 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
 
 class ItemAdapter (
@@ -14,13 +16,17 @@ class ItemAdapter (
     private val items: ResponseArray
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View, private val picasso: Picasso): RecyclerView.ViewHolder(itemView) {
         fun bindData(name: String, distance: String, priceRangeStr: String, ratingsStr: String, ratingsCount: String, context: Context, item: ResponseObject) {
             (itemView.findViewById(R.id.txvItemName) as TextView).text = name
             (itemView.findViewById(R.id.txvDistance) as TextView).text = distance
             (itemView.findViewById(R.id.txvPriceRange) as TextView).text = priceRangeStr
             (itemView.findViewById(R.id.txvRating) as TextView).text = ratingsStr
             (itemView.findViewById(R.id.txvRatingCount) as TextView).text = ratingsCount
+            picasso
+                .load(item.logo)
+                .into(itemView.findViewById(R.id.ivwLogo) as ImageView)
+
             itemView.setOnClickListener {
                 context.startActivity(Intent(context, RestaurantActivity::class.java).apply {
                     putExtra("restaurant", item)
@@ -31,7 +37,7 @@ class ItemAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(context).inflate(viewType, parent, false)
-        return ItemViewHolder(view)
+        return ItemViewHolder(view, Picasso.Builder(context).build())
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

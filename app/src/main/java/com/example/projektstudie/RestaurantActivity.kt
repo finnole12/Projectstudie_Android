@@ -8,6 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projektstudie.databinding.ActivityRestaurantBinding
+import com.squareup.picasso.Picasso
 
 class RestaurantActivity : AppCompatActivity() {
 
@@ -55,5 +56,7 @@ class RestaurantActivity : AppCompatActivity() {
             adapter = RatingsAdapter(this@RestaurantActivity, restaurant.ratings)
             addItemDecoration(DividerItemDecoration(this@RestaurantActivity, LinearLayoutManager.VERTICAL))
         }
+
+        Picasso.get().load(restaurant.picture).into(binding.ivwImage)
     }
 }

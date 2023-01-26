@@ -57,4 +57,13 @@
         app:layout_constraintStart_toEndOf="@id/txvRating"
         app:layout_constraintTop_toBottomOf="@id/txvItemName" />
 
+    <ImageView
+        android:id="@+id/ivwLogo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="@dimen/default_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/masa_schmidt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
