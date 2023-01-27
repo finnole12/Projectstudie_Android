@@ -16,10 +16,11 @@ import kotlin.math.roundToInt
 
 class ItemAdapter (
     private val context: Context,
-    private val items: ResponseArray
+    private val items: ResponseArray,
+    private val rcv: View
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(itemView: View, private val picasso: Picasso): RecyclerView.ViewHolder(itemView) {
+    class ItemViewHolder(itemView: View, private val picasso: Picasso, private val rcv: View): RecyclerView.ViewHolder(itemView) {
         fun bindData(name: String, distance: String, priceRangeStr: String, ratingsStr: String, ratingsCount: String, context: Context, item: ResponseObject) {
             (itemView.findViewById(R.id.txvItemName) as TextView).text = name
             (itemView.findViewById(R.id.txvDistance) as TextView).text = distance
@@ -33,6 +34,7 @@ class ItemAdapter (
                 .into(itemView.findViewById(R.id.ivwLogo) as ImageView)
 
             itemView.setOnClickListener {
+                rcv.requestFocus()
                 context.startActivity(Intent(context, RestaurantActivity::class.java).apply {
                     putExtra("restaurant", item)
                 })
@@ -42,7 +44,7 @@ class ItemAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(context).inflate(viewType, parent, false)
-        return ItemViewHolder(view, Picasso.Builder(context).build())
+        return ItemViewHolder(view, Picasso.Builder(context).build(), rcv)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

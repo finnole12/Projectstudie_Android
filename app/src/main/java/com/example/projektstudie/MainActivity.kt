@@ -56,10 +56,13 @@ class MainActivity : AppCompatActivity(),LocationListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
                 launchSearch()
+                binding.rvwSearchItems.requestFocus()
                 return false
             }
 
             override fun onQueryTextChange(p0: String?): Boolean {
+                if (p0 == "")
+                    launchSearch()
                 return false
             }
         })
@@ -121,7 +124,7 @@ class MainActivity : AppCompatActivity(),LocationListener {
     private fun displayItems(responseArray: ResponseArray) {
         binding.rvwSearchItems.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = ItemAdapter(context, responseArray)
+            adapter = ItemAdapter(context, responseArray, binding.rvwSearchItems)
         }
     }
 
@@ -156,7 +159,11 @@ class MainActivity : AppCompatActivity(),LocationListener {
             binding.btnFilter.setBackgroundColor(
                 getColor(androidx.appcompat.R.color.material_blue_grey_950)
             )
-            if (latitude != null && longitude != null) launchSearch()
+            if (latitude != null && longitude != null) {
+                launchSearch()
+                binding.rvwSearchItems.requestFocus()
+            }
+
         }
 
 
