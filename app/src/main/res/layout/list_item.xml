@@ -38,8 +38,8 @@
         android:id="@+id/txvRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginEnd="0dp"
         android:fontFamily="@font/babel_stone_han"
         android:text="@string/star"
@@ -51,8 +51,8 @@
         android:id="@+id/txvRatingCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="@dimen/default_margin"
         android:text="#35"
         app:layout_constraintStart_toEndOf="@id/txvRating"
         app:layout_constraintTop_toBottomOf="@id/txvItemName" />
@@ -63,7 +63,6 @@
         android:layout_height="70dp"
         android:layout_margin="@dimen/default_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/masa_schmidt" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

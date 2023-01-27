@@ -58,5 +58,6 @@ class RestaurantActivity : AppCompatActivity() {
         }
 
         Picasso.get().load(restaurant.picture).into(binding.ivwImage)
+        Picasso.get().load(restaurant.logo).into(binding.ivwLogo)
     }
 }

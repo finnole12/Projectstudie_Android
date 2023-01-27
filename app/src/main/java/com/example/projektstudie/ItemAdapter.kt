@@ -2,11 +2,14 @@ package com.example.projektstudie
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
@@ -23,6 +26,8 @@ class ItemAdapter (
             (itemView.findViewById(R.id.txvPriceRange) as TextView).text = priceRangeStr
             (itemView.findViewById(R.id.txvRating) as TextView).text = ratingsStr
             (itemView.findViewById(R.id.txvRatingCount) as TextView).text = ratingsCount
+            if (item.highlight) itemView.setBackgroundColor(
+                ContextCompat.getColor(context, R.color.highlightYellow))
             picasso
                 .load(item.logo)
                 .into(itemView.findViewById(R.id.ivwLogo) as ImageView)

@@ -3,6 +3,8 @@ package com.example.projektstudie
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
@@ -25,6 +27,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.net.HttpURLConnection
 import java.net.URL
+import javax.net.ssl.HttpsURLConnection
+
 
 class MainActivity : AppCompatActivity(),LocationListener {
     private lateinit var binding: ActivityMainBinding
@@ -70,7 +74,7 @@ class MainActivity : AppCompatActivity(),LocationListener {
         limit: Int = 20,
         offset: Int = 0,
     ): ResponseArray {
-        val url = URL("http://${BuildConfig.LOCAL_TEST_DOMAIN}:3000/getrestaurants?latitude=${latitude}&longitude=${longitude}&searchTerm=${searchTerm}&radius=${radius}&sortBy=${sortMethod}&limit=${limit}&offset=${offset}")
+        val url = URL("${BuildConfig.DOMAIN}/getrestaurants?latitude=${latitude}&longitude=${longitude}&searchTerm=${searchTerm}&radius=${radius}&sortBy=${sortMethod}&limit=${limit}&offset=${offset}")
 
         val responseJson = with(url.openConnection() as HttpURLConnection) {
             requestMethod = "GET"
@@ -106,12 +110,10 @@ class MainActivity : AppCompatActivity(),LocationListener {
                     radius = currentFilter.radius.toDouble(),
                     sortMethod = currentFilter.sortMethod,
                     latitude = this@MainActivity.latitude!!,
-                    longitude = this@MainActivity.longitude!!
-                    // TODO: limit
-                    // TODO: offset
+                    longitude = this@MainActivity.longitude!!,
+                    limit = 100
                 )
             }
-            println(responseArray)
             displayItems(responseArray)
         }
     }
@@ -157,8 +159,27 @@ class MainActivity : AppCompatActivity(),LocationListener {
             if (latitude != null && longitude != null) launchSearch()
         }
 
-        sideSheetBinding.btnResetFilter.setOnClickListener {
 
+        val colorStateList = ColorStateList(
+            arrayOf(
+                intArrayOf(-android.R.attr.state_enabled),
+                intArrayOf(android.R.attr.state_enabled)
+            ), intArrayOf(
+                Color.WHITE,
+                Color.WHITE
+            )
+        )
+
+        sideSheetBinding.rbtnDistance.buttonTintList = colorStateList
+        sideSheetBinding.rbtnPopularity.buttonTintList = colorStateList
+        sideSheetBinding.rbtnPrice.buttonTintList = colorStateList
+        sideSheetBinding.rbtnRating.buttonTintList = colorStateList
+
+
+        sideSheetBinding.btnResetFilter.setOnClickListener {
+            currentFilter = Filter()
+            sideSheetBinding.rbtnDistance.isChecked = true
+            sideSheetBinding.sliRadius.value = 1f
         }
     }
 }

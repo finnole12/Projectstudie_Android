@@ -74,6 +74,8 @@
             android:value="1"
             android:valueFrom="0.5"
             android:valueTo="10"
+            app:labelStyle="@style/My_Tooltip"
+            app:trackColorActive="@color/teal_200"
             app:thumbColor="@color/teal_200" />
 
         <com.google.android.material.divider.MaterialDivider
@@ -108,8 +110,6 @@
                 android:id="@+id/rbtnDistance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
-                android:drawableTint="@color/teal_200"
                 android:text="@string/distance"
                 android:textColor="@color/white"
                 app:useMaterialThemeColors="false" />
@@ -119,14 +119,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/rating"
-                android:buttonTint="@color/white"
                 android:textColor="@color/white" />
 
             <RadioButton
                 android:id="@+id/rbtnPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
                 android:text="@string/price"
                 android:textColor="@color/white" />
 
@@ -134,7 +132,6 @@
                 android:id="@+id/rbtnPopularity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:buttonTint="@color/white"
                 android:text="@string/popularity"
                 android:textColor="@color/white" />
         </RadioGroup>

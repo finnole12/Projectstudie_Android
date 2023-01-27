@@ -9,6 +9,7 @@ if (propertiesFile.exists()) {
     properties.load(propertiesFile.newDataInputStream())
 }
 ext.localTestDomain = properties.getProperty('localTestDomain')
+ext.remoteProdDomain = properties.getProperty('remoteProdDomain')
 android {
     namespace 'com.example.projektstudie'
     compileSdk 32
@@ -20,6 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         resValue "string", "localTestDomain", properties.getProperty("localTestDomain")
+        resValue "string", "remoteProdDomain", properties.getProperty("remoteProdDomain")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,7 +31,12 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "LOCAL_TEST_DOMAIN", "\"$localTestDomain\"")
+            buildConfigField("String", "DOMAIN", "\"$localTestDomain\"")
+        }
+
+        debugRemote {
+            buildConfigField("String", "DOMAIN", "\"$remoteProdDomain\"")
+            debuggable true
         }
 
         release {
